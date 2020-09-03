@@ -1,0 +1,48 @@
+﻿<Bar
+  Mode="BarMode.VerticalInline"
+  CollapseMode="BarCollapseMode.Small"
+  Breakpoint="Breakpoint.Desktop"
+  NavigationBreakpoint="Breakpoint.Tablet"
+  ThemeContrast="ThemeContrast.Dark"
+>
+  <BarBrand>
+    <BarItem>
+      <BarLink To="">
+        <BarIcon IconName="IconName.Code" />
+        Página inicial
+      </BarLink>
+    </BarItem>
+  </BarBrand>
+  <BarMenu>
+    <BarStart>
+      <BarItem>
+        <BarLink To="todo">
+          <BarIcon IconName="IconName.List" />
+          Click here
+        </BarLink>
+      </BarItem>
+      <BarItem>
+        <BarDropdown>
+          <BarDropdownToggle>
+            <BarIcon IconName="IconName.Info" />
+            Mais informações
+          </BarDropdownToggle>
+          <BarDropdownMenu>
+            <BarDropdownItem>Primeira aba</BarDropdownItem>
+          </BarDropdownMenu>
+        </BarDropdown>
+      </BarItem>
+    </BarStart>
+  </BarMenu>
+</Bar>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

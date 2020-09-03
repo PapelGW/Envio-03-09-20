@@ -1,0 +1,58 @@
+@page "/todo"
+
+<Container>
+    <Form>
+        <Addons>
+            <Addon AddonType="AddonType.Body">
+                <TextEdit Placeholder="A fazeres" @bind-Text = "newTodo" />
+            </Addon>
+            <Addon AddonType="AddonType.End">
+            <Button Color="Color.Success" Button Type="ButtonType.Submit" PreventDefaultOnSubmit="true" @onclick="AddTaks" >Inserir</Button>
+            </Addon>
+        </Addons>
+     </Form>
+</Container>
+<br>
+<Table Bordered="true" Narrow="true">
+        <TableHeader ThemeContrast="ThemeContrast.Light">
+            <TableRow>
+                <TableHeaderCell Style="width:10%;" >Progresso</TableHeaderCell>
+                <TableHeaderCell Style="width:40%;">Tarefa</TableHeaderCell>
+                <TableHeaderCell Style="width:25%;">Data de cadastro</TableHeaderCell>
+                <TableHeaderCell Style="width:25%;">Data de conclusão</TableHeaderCell>
+            </TableRow>
+        </TableHeader>
+</Table>
+
+
+@foreach (var item in listT)
+{
+    
+<Table Bordered="true" Narrow="true">
+        <TableBody>
+            <TableRow>  
+                    <TableRowCell Style="width:10%;" ><Check TValue="bool" Checked="@item.Feito" >Feito</Check></TableRowCell>  
+                    <TableRowCell Style="width:40%;">@item.Titulo </TableRowCell>               
+                    <TableRowCell Style="width:25%;"> @item.Inicio</TableRowCell>     
+                    <TableRowCell Style="width:25%;"> @item.Fim </TableRowCell>         
+            </TableRow>  
+        </TableBody>
+    </Table>
+}
+
+
+@code{
+
+    List<todo> listT;
+    public string newTodo {get;set;}
+    private void AddTaks(){
+        listT.Add(new todo(){Titulo = newTodo,Inicio=DateTime.Now});
+        newTodo = "";
+    }  
+
+    protected override void OnInitialized()
+    {
+        listT = new List<todo>();
+    }
+}
+ 
